@@ -1,5 +1,6 @@
 package graphen_zeichnen;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 class Graph {
@@ -11,8 +12,12 @@ class Graph {
         }
     }
 
-    public void draw() {
-        Drawer.draw(graph);
+    public void draw() throws IOException, InterruptedException {
+        var drawer = new Drawer();
+        for (var point : graph) {
+            drawer.drawPoint(point);
+        }
+        drawer.close();
     }
 
     public Graph(ArrayList<Coordinate2D> points) {
