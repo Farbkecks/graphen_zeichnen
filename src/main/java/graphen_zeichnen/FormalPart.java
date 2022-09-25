@@ -5,21 +5,21 @@ import java.lang.Math;
 public class FormalPart {
     Sign sign;
     Operation firstOperation;
-    double firstNummber;
-    double secondNummber;
+    double firstNumber;
+    double secondNumber;
     Operation secOperation;
-    double thirtNummber;
-    int indexforX;
+    double thirdNumber;
+    int indexForX;
     PartVersion partVersion;
 
     public double calculateVersionOne() {
         switch (this.sign) {
             case add:
-                return this.firstNummber;
+                return this.firstNumber;
             case subtract:
-                return this.firstNummber * -1;
+                return this.firstNumber * -1;
             default: {
-                System.out.println("Berechung Felerhaft 1");
+                System.out.println("Berechnung Fehlerhaft 1");
                 System.exit(1);
                 return 0;
             }
@@ -27,23 +27,23 @@ public class FormalPart {
     }
 
     public double calculateVersionThree(double ValueOfX) {
-        double resault;
+        double result;
         double firstNumLocal;
         double secNumLocal;
 
-        switch (this.indexforX) {
+        switch (this.indexForX) {
             case 1: {
                 firstNumLocal = ValueOfX;
-                secNumLocal = this.secondNummber;
+                secNumLocal = this.secondNumber;
                 break;
             }
             case 3: {
-                firstNumLocal = this.firstNummber;
+                firstNumLocal = this.firstNumber;
                 secNumLocal = ValueOfX;
                 break;
             }
             default: {
-                System.out.println("Berechung fehlerhaft 21");
+                System.out.println("Berechnung fehlerhaft 21");
                 System.exit(1);
                 firstNumLocal = 0;
                 secNumLocal = 0;
@@ -52,27 +52,27 @@ public class FormalPart {
 
         switch (this.firstOperation) {
             case power:
-                resault = Math.pow(firstNumLocal, secNumLocal);
+                result = Math.pow(firstNumLocal, secNumLocal);
                 break;
             case times:
-                resault = firstNumLocal * secNumLocal;
+                result = firstNumLocal * secNumLocal;
                 break;
             case divided:
-                resault = firstNumLocal / secNumLocal;
+                result = firstNumLocal / secNumLocal;
                 break;
             default: {
-                System.out.println("Berechung fehlerhaft 22");
+                System.out.println("Berechnung fehlerhaft 22");
                 System.exit(1);
-                resault = 0;
+                result = 0;
             }
         }
         switch (this.sign) {
             case add:
-                return resault;
+                return result;
             case subtract:
-                return resault * -1;
+                return result * -1;
             default: {
-                System.out.println("Berechung Felerhaft 23");
+                System.out.println("Berechnung Fehlerhaft 23");
                 System.exit(1);
                 return 0;
             }
@@ -90,36 +90,36 @@ public class FormalPart {
     }
 
     public double calculateVersionFive(double ValueOfX) {
-        double resault;
+        double result;
         double firstNumLocal;
         double secNumLocal;
-        double thirtNumLocal;
+        double thirdNumLocal;
 
-        switch (this.indexforX) {
+        switch (this.indexForX) {
             case 1: {
                 firstNumLocal = ValueOfX;
-                secNumLocal = this.secondNummber;
-                thirtNumLocal = this.thirtNummber;
+                secNumLocal = this.secondNumber;
+                thirdNumLocal = this.thirdNumber;
                 break;
             }
             case 3: {
-                firstNumLocal = this.firstNummber;
+                firstNumLocal = this.firstNumber;
                 secNumLocal = ValueOfX;
-                thirtNumLocal = this.thirtNummber;
+                thirdNumLocal = this.thirdNumber;
                 break;
             }
             case 5: {
-                firstNumLocal = this.firstNummber;
-                secNumLocal = this.secondNummber;
-                thirtNumLocal = ValueOfX;
+                firstNumLocal = this.firstNumber;
+                secNumLocal = this.secondNumber;
+                thirdNumLocal = ValueOfX;
                 break;
             }
             default: {
-                System.out.println("Berechung fehlerhaft 31");
+                System.out.println("Berechnung fehlerhaft 31");
                 System.exit(1);
                 firstNumLocal = 0;
                 secNumLocal = 0;
-                thirtNumLocal = 0;
+                thirdNumLocal = 0;
             }
         }
 
@@ -127,78 +127,78 @@ public class FormalPart {
             case 0: {
                 switch (this.firstOperation) {
                     case times:
-                        resault = firstNumLocal * secNumLocal;
+                        result = firstNumLocal * secNumLocal;
                         break;
                     case divided:
-                        resault = firstNumLocal / secNumLocal;
+                        result = firstNumLocal / secNumLocal;
                         break;
                     default: {
-                        System.out.println("Berechung fehlerhaft 32");
+                        System.out.println("Berechnung fehlerhaft 32");
                         System.exit(1);
-                        resault = 0;
+                        result = 0;
                     }
                 }
                 switch (this.secOperation) {
                     case times:
-                        resault = resault * thirtNumLocal;
+                        result = result * thirdNumLocal;
                         break;
                     case divided:
-                        resault = resault / thirtNumLocal;
+                        result = result / thirdNumLocal;
                         break;
                     default: {
-                        System.out.println("Berechung fehlerhaft 33");
+                        System.out.println("Berechnung fehlerhaft 33");
                         System.exit(1);
-                        resault = 0;
+                        result = 0;
                     }
                 }
             }
             case 1: {
-                resault = Math.pow(firstNumLocal, secNumLocal);
+                result = Math.pow(firstNumLocal, secNumLocal);
                 switch (this.secOperation) {
                     case times:
-                        resault = resault * thirtNumLocal;
+                        result = result * thirdNumLocal;
                         break;
                     case divided:
-                        resault = resault / thirtNumLocal;
+                        result = result / thirdNumLocal;
                         break;
                     default: {
-                        System.out.println("Berechung fehlerhaft 34");
+                        System.out.println("Berechnung fehlerhaft 34");
                         System.exit(1);
-                        resault = 0;
+                        result = 0;
                     }
                 }
                 break;
             }
             case 2: {
-                resault = Math.pow(secNumLocal, thirtNumLocal);
+                result = Math.pow(secNumLocal, thirdNumLocal);
                 switch (this.firstOperation) {
                     case times:
-                        resault = resault * firstNumLocal;
+                        result = result * firstNumLocal;
                         break;
                     case divided:
-                        resault = resault / firstNumLocal;
+                        result = result / firstNumLocal;
                         break;
                     default: {
-                        System.out.println("Berechung fehlerhaft 35");
+                        System.out.println("Berechnung fehlerhaft 35");
                         System.exit(1);
                     }
                 }
                 break;
             }
             default: {
-                System.out.println("Berechung fehlerhaft 36");
+                System.out.println("Berechnung fehlerhaft 36");
                 System.exit(1);
-                resault = 0;
+                result = 0;
             }
 
         }
         switch (this.sign) {
             case add:
-                return resault;
+                return result;
             case subtract:
-                return resault * -1;
+                return result * -1;
             default: {
-                System.out.println("Berechung Felerhaft 37");
+                System.out.println("Berechnung Fehlerhaft 37");
                 System.exit(1);
                 return 0;
             }
@@ -215,7 +215,7 @@ public class FormalPart {
             case five:
                 return calculateVersionFive(ValueOfX);
             default: {
-                System.out.println("Berechung fehlerhaft");
+                System.out.println("Berechnung fehlerhaft");
                 System.exit(1);
                 return 0;
             }

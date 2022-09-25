@@ -4,29 +4,30 @@ import java.util.ArrayList;
 import java.lang.Math;
 
 public class Generator {
-    // Die Orginale String Formel wird in eine Liste aus Strings geändert welche die
-    // einezelnen Rechenaufgaben zwischen + und - enthalten
-    static ArrayList<String> splitString(String formel) {
-        char[] formelCharList = formel.toCharArray(); // String in CharArray um für + und - zu suchen
+    // Die Originale String Formel wird in eine Liste aus Strings geändert welche
+    // die
+    // einezellen Rechenaufgaben zwischen + und - enthalten
+    static ArrayList<String> splitString(String formula) {
+        char[] formulaCharList = formula.toCharArray(); // String in CharArray um für + und - zu suchen
         ArrayList<String> formelList = new ArrayList<>(); // Liste mit den aufgeteilte Formel Parts
         int oldSign = 0;
-        for (int index = 0; index < formelCharList.length; index++) {
-            if (formelCharList[index] == '+' || formelCharList[index] == '-') { // index von + und - finden
-                formelList.add(formel.substring(oldSign, index));
+        for (int index = 0; index < formulaCharList.length; index++) {
+            if (formulaCharList[index] == '+' || formulaCharList[index] == '-') { // index von + und - finden
+                formelList.add(formula.substring(oldSign, index));
                 oldSign = index;
             }
         }
 
-        formelList.add(formel.substring(oldSign, formelCharList.length)); // Substring von letzen +/- bis zum Ende
+        formelList.add(formula.substring(oldSign, formulaCharList.length)); // Substring von letzten +/- bis zum Ende
         String firstPart = formelList.get(0);
         formelList.set(0, "+" + firstPart); // TODO: foramel kann Negativ anfangen
 
         return formelList;
     }
 
-    static boolean testForNummer(char nummber) {
+    static boolean testForNummer(char number) {
         for (int i = 0; i < 10; i++) {
-            int tempNummer = Character.getNumericValue(nummber);
+            int tempNummer = Character.getNumericValue(number);
             if (tempNummer == i) {
                 return true;
             }
@@ -34,8 +35,9 @@ public class Generator {
         return false;
     }
 
-    static Operation testForOperation(char caracter) {
-        switch (caracter) {
+    static Operation testForOperation(char character) {
+        // System.out.println(character);
+        switch (character) {
             case '*':
                 return Operation.times;
             case '/':
@@ -43,15 +45,16 @@ public class Generator {
             case '^':
                 return Operation.power;
             default: {
-                System.out.println("Falsche einfabe bei Operation");
+                System.out.println(
+                        "Falsche eingabe bei Operation\n Beachte das unter Windows die Formel in Anführungszeichen angegeben werden muss");
                 System.exit(1);
-                return Operation.none; // wird nicht erreicht nur für den Compieler
+                return Operation.none; // wird nicht erreicht nur für den Compiler
             }
         }
     }
 
-    static Sign testForSign(char caracter) {
-        switch (caracter) {
+    static Sign testForSign(char character) {
+        switch (character) {
             case '+':
                 return Sign.add;
             case '-':
@@ -59,12 +62,12 @@ public class Generator {
             default: {
                 System.out.println("Falsche eingabe bei dem Vorzeichen");
                 System.exit(1);
-                return Sign.none; // wird nicht erreicht nur für den Compieler
+                return Sign.none; // wird nicht erreicht nur für den Compiler
             }
         }
     }
 
-    static ArrayList<FormalPart> getFormelPartOpjektsfromString(ArrayList<String> formelList) {
+    static ArrayList<FormalPart> getFormelPartObjektsFromString(ArrayList<String> formelList) {
         ArrayList<FormalPart> formelObjekts = new ArrayList<>();
         for (String formelPartString : formelList) {
             FormalPart formalPart = new FormalPart();
@@ -72,9 +75,9 @@ public class Generator {
 
             formalPart.sign = testForSign(formelPartCharArray[0]);
             if (testForNummer(formelPartCharArray[1]) == true) {
-                formalPart.firstNummber = Character.getNumericValue(formelPartCharArray[1]);
+                formalPart.firstNumber = Character.getNumericValue(formelPartCharArray[1]);
             } else {
-                formalPart.indexforX = 1;
+                formalPart.indexForX = 1;
             }
             if (formelPartCharArray.length == 2) {
                 formalPart.partVersion = PartVersion.one;
@@ -84,9 +87,9 @@ public class Generator {
 
             formalPart.firstOperation = testForOperation(formelPartCharArray[2]);
             if (testForNummer(formelPartCharArray[3]) == true) {
-                formalPart.secondNummber = Character.getNumericValue(formelPartCharArray[3]);
+                formalPart.secondNumber = Character.getNumericValue(formelPartCharArray[3]);
             } else {
-                formalPart.indexforX = 3;
+                formalPart.indexForX = 3;
             }
             if (formelPartCharArray.length == 4) {
                 formalPart.partVersion = PartVersion.three;
@@ -96,9 +99,9 @@ public class Generator {
 
             formalPart.secOperation = testForOperation(formelPartCharArray[4]);
             if (testForNummer(formelPartCharArray[5]) == true) {
-                formalPart.thirtNummber = Character.getNumericValue(formelPartCharArray[5]);
+                formalPart.thirdNumber = Character.getNumericValue(formelPartCharArray[5]);
             } else {
-                formalPart.indexforX = 5;
+                formalPart.indexForX = 5;
             }
             formalPart.partVersion = PartVersion.five;
             formelObjekts.add(formalPart);
@@ -110,24 +113,24 @@ public class Generator {
     static ArrayList<Coordinate2D> calculateGraph(ArrayList<FormalPart> formelObjekts) {
         ArrayList<Coordinate2D> graph = new ArrayList<>();
         for (int x = 1; x < 20; x++) {
-            double tempResulte = 0;
+            double tempResult = 0;
             for (FormalPart part : formelObjekts) {
-                tempResulte += part.calculatePart(x);
+                tempResult += part.calculatePart(x);
             }
-            if (tempResulte < 0) {
+            if (tempResult < 0) {
                 continue;
             }
-            if (tempResulte > 50) {
+            if (tempResult > 50) {
                 continue;
             }
-            graph.add(new Coordinate2D(x, (int) Math.round(tempResulte)));
+            graph.add(new Coordinate2D(x, (int) Math.round(tempResult)));
         }
         return graph;
     }
 
-    static ArrayList<Coordinate2D> generateBasicGraph(String formel) {
-        ArrayList<String> formelList = splitString(formel);
-        ArrayList<FormalPart> formelObjekts = getFormelPartOpjektsfromString(formelList);
+    static ArrayList<Coordinate2D> generateBasicGraph(String formula) {
+        ArrayList<String> formelList = splitString(formula);
+        ArrayList<FormalPart> formelObjekts = getFormelPartObjektsFromString(formelList);
         return calculateGraph(formelObjekts);
     }
 }

@@ -16,8 +16,8 @@ public class Drawer {
         int dy = pointNew.y - pointOld.y;
 
         int steps = Math.abs(dx) > Math.abs(dy) ? Math.abs(dx) : Math.abs(dy);
-        double xinc = (double) dx / steps;
-        double yinc = (double) dy / steps;
+        double xInc = (double) dx / steps;
+        double yInc = (double) dy / steps;
 
         double x = pointOld.x;
         double y = pointOld.y;
@@ -29,8 +29,8 @@ public class Drawer {
                         terminalRows - (int) Math.round(y) - 1);
                 terminal.putCharacter(symbols);
             }
-            x += xinc;
-            y += yinc;
+            x += xInc;
+            y += yInc;
         }
         terminal.flush();
         // save the old Point to draw the line
