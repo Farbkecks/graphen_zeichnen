@@ -112,12 +112,12 @@ public class Generator {
 
     static ArrayList<Coordinate2D> calculateGraph(ArrayList<FormalPart> formelObjekts) {
         ArrayList<Coordinate2D> graph = new ArrayList<>();
-        for (int x = 1; x < 50; x++) {
+        for (int x = 0; x < 100; x++) {
             double tempResult = 0;
             for (FormalPart part : formelObjekts) {
                 tempResult += part.calculatePart(x);
             }
-            if (tempResult < 0) {
+            if (tempResult < 0 || tempResult > 1000) {
                 continue;
             }
             graph.add(new Coordinate2D(x, (int) Math.round(tempResult)));

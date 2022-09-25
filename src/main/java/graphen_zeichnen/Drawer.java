@@ -43,8 +43,8 @@ public class Drawer {
         System.out.println();
     }
 
-    Drawer() throws IOException {
-        pointOld = new Coordinate2D(0, 0);
+    Drawer(Coordinate2D pointStart) throws IOException {
+        pointOld = pointStart;
 
         DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory();
         terminal = defaultTerminalFactory.createTerminal();

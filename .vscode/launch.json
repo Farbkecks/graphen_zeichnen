@@ -10,7 +10,7 @@
             "request": "launch",
             "mainClass": "graphen_zeichnen.App",
             "projectName": "graphen_zeichnen",
-            "args": "x^2"
+            "args": "2^x*4+3*x"
         }
     ]
 }

@@ -13,9 +13,9 @@ class Graph {
     }
 
     public void draw() throws IOException, InterruptedException {
-        var drawer = new Drawer();
-        for (var point : graph) {
-            drawer.drawPoint(point);
+        var drawer = new Drawer(graph[0]);
+        for (int i = 0; i < graph.length; i++) {
+            drawer.drawPoint(graph[i]);
         }
         drawer.close();
     }
