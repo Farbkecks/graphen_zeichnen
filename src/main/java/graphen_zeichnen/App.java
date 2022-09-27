@@ -18,8 +18,9 @@ public class App {
                 System.exit(0);
             }
         }
-        Graph graph = new Graph(Generator.generateBasicGraph(formula));
-        graph.printAsList();
-        graph.draw();
+        // Graph graph = new Graph(Generator.generateBasicGraph(formula));
+        // graph.printAsList();
+        // graph.draw();
+        Generator.generateBasicGraph(formula);
     }
 }

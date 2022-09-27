@@ -1,7 +1,17 @@
 package graphen_zeichnen;
 
-public class Generator {
-    public static Coordinate2D[] generateBasicGraph(String formula) {
+import java.util.ArrayList;
+import java.util.Arrays;
 
+public class Generator {
+
+    private static ArrayList<String> splitFormula(String formula) {
+        return new ArrayList<String>(Arrays.asList(formula.split("+-")));
+
+    }
+
+    public static void generateBasicGraph(String formula) {
+        var formulaList = splitFormula(formula);
+        System.out.println("lala");
     }
 }
