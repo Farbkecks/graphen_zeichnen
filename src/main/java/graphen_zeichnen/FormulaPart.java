@@ -2,7 +2,7 @@ package graphen_zeichnen;
 
 import java.lang.Math;
 
-public class FormalPart {
+public class FormulaPart {
     private int sign = 1;
     private int number1 = 1;
     private int number2 = 1;
@@ -27,7 +27,7 @@ public class FormalPart {
         }
     }
 
-    public FormalPart(int sign, int num1, int num2, int num3, PosX posX) {
+    public FormulaPart(int sign, int num1, int num2, int num3, PosX posX) {
         this.sign = sign;
         this.number1 = num1;
         this.number2 = num2;
